@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#5b63c8"
+  >
+
+  <meta
+    name="description"
+    content="AirPods Finder - Remember where you kept your AirPods"
+  >
+
+  <title>AirPods Finder</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+</head>
+
+
+<body>
+
+  <!-- =====================================================
+       MAIN CONTAINER
+  ====================================================== -->
+
+  <div class="container">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header>
+
+      <div class="airpods-icon">
+        🎧
+      </div>
+
+      <h1>
+        AirPods Finder
+      </h1>
+
+      <p>
+        Remember where you kept your AirPods
+      </p>
+
+    </header>
+
+
+    <!-- =====================================================
+         SEARCH
+    ====================================================== -->
+
+    <section class="card search-card">
+
+      <h2>
+        🔍 Find My AirPods
+      </h2>
+
+      <p>
+        Search for your AirPods or the place where you kept them.
+      </p>
+
+      <br>
+
+      <div class="search-box">
+
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search AirPods or location..."
+          autocomplete="off"
+        >
+
+        <button
+          id="searchBtn"
+          type="button"
+        >
+          🔍 Search
+        </button>
+
+      </div>
+
+
+      <!-- NOTIFICATION -->
+
+      <button
+        id="notificationBtn"
+        type="button"
+        class="notification-btn"
+      >
+        🔔 Allow AirPods Notifications
+      </button>
+
+    </section>
+
+
+    <!-- =====================================================
+         AIRPODS ALARM
+    ====================================================== -->
+
+    <section class="card alarm-card">
+
+      <h2>
+        🔊 Find AirPods
+      </h2>
+
+      <p id="alarmStatus">
+        Search for your AirPods to start the alert.
+      </p>
+
+      <div class="alarm-icon">
+        🎧
+      </div>
+
+      <div class="alarm-buttons">
+
+        <button
+          id="startAlarm"
+          type="button"
+          class="alarm-start"
+        >
+          🔊 Start Alarm
+        </button>
+
+        <button
+          id="stopAlarm"
+          type="button"
+          class="alarm-stop"
+        >
+          ⏹ Stop Alarm
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         AIRPODS AUDIO
+    ====================================================== -->
+
+    <audio
+      id="airpodsAlarm"
+      src="mixkit-slot-machine-payout-alarm-1996.wav"
+      preload="auto"
+      loop
+    ></audio>
+
+
+    <!-- =====================================================
+         LAST KNOWN LOCATION
+    ====================================================== -->
+
+    <section class="card last-location">
+
+      <h2>
+        📍 Last Known Location
+      </h2>
+
+      <div id="latestLocation">
+
+        <p class="loading">
+          Loading your latest AirPods location...
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FIND HINT
+    ====================================================== -->
+
+    <section class="card hint-card">
+
+      <h2>
+        💡 Find Hint
+      </h2>
+
+      <h3 id="hintText">
+        Your smart hint will appear here
+      </h3>
+
+      <p id="hintReason">
+        Save a few locations to learn your AirPods habits.
+      </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         ROOM MAP
+    ====================================================== -->
+
+    <section class="card">
+
+      <h2>
+        🗺️ Room Map
+      </h2>
+
+      <p>
+        Select the room where you kept your AirPods.
+      </p>
+
+
+      <div class="room-map">
+
+        <button
+          type="button"
+          class="room room-bedroom"
+          data-room="Bedroom"
+        >
+          🛏️
+          <span>Bedroom</span>
+        </button>
+
+
+        <button
+          type="button"
+          class="room room-study"
+          data-room="Study"
+        >
+          📚
+          <span>Study</span>
+        </button>
+
+
+        <button
+          type="button"
+          class="room room-hall"
+          data-room="Hall"
+        >
+          🛋️
+          <span>Hall</span>
+        </button>
+
+
+        <button
+          type="button"
+          class="room room-kitchen"
+          data-room="Kitchen"
+        >
+          🍳
+          <span>Kitchen</span>
+        </button>
+
+
+        <button
+          type="button"
+          class="room room-other"
+          data-room="Other"
+        >
+          📍
+          <span>Other</span>
+        </button>
+
+      </div>
+
+
+      <p
+        id="selectedRoom"
+        class="selected-room"
+      >
+        No room selected
+      </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         SAVE NEW LOCATION
+    ====================================================== -->
+
+    <section class="card">
+
+      <h2>
+        ➕ Save New Location
+      </h2>
+
+      <p>
+        Save the place where you kept your AirPods.
+      </p>
+
+      <br>
+
+
+      <form id="log-form">
+
+
+        <label>
+
+          Where did you keep them?
+
+          <input
+            type="text"
+            id="location"
+            placeholder="Example: Bedroom shelf"
+            autocomplete="off"
+            required
+          >
+
+        </label>
+
+
+        <label>
+
+          Note
+
+          <input
+            type="text"
+            id="note"
+            placeholder="Example: Inside black pouch"
+            autocomplete="off"
+          >
+
+        </label>
+
+
+        <label>
+
+          📸 Photo Memory
+
+          <input
+            type="file"
+            id="photoInput"
+            accept="image/*"
+          >
+
+        </label>
+
+
+        <div
+          id="photoPreview"
+          class="photo-preview"
+        >
+
+          <span>
+            Photo preview will appear here
+          </span>
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="save-button"
+        >
+
+          💾 Save Location
+
+        </button>
+
+
+      </form>
+
+    </section>
+
+
+    <!-- =====================================================
+         LOCATION HISTORY
+    ====================================================== -->
+
+    <section class="card">
+
+      <div class="history-title">
+
+        <h2>
+          📜 Location History
+        </h2>
+
+        <button
+          id="showAllBtn"
+          type="button"
+        >
+          Show All
+        </button>
+
+      </div>
+
+
+      <div id="locations-list">
+
+        <p class="loading">
+          Loading location history...
+        </p>
+
+      </div>
+
+    </section>
+
+
+  </div>
+
+
+  <!-- =====================================================
+       PHONE STYLE NOTIFICATION
+  ====================================================== -->
+
+  <div
+    id="notificationPreview"
+    class="notification-preview"
+    role="alert"
+    aria-live="assertive"
+  >
+
+    <div class="notification-preview-title">
+      🎧 AirPods Finder
+    </div>
+
+    <div
+      id="notificationPreviewText"
+      class="notification-preview-text"
+    >
+      Your AirPods may be nearby.
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       AI CHAT FLOATING BUTTON
+  ====================================================== -->
+
+  <button
+    id="chatToggle"
+    class="chat-toggle"
+    type="button"
+    aria-label="Open AirPods AI"
+  >
+    🤖
+  </button>
+
+
+  <!-- =====================================================
+       AI CHAT WINDOW
+  ====================================================== -->
+
+  <div
+    id="chatbot"
+    class="chatbot"
+  >
+
+
+    <!-- =================================================
+         CHAT HEADER
+    ================================================== -->
+
+    <div class="chat-header">
+
+
+      <!-- =================================================
+           🌍 LANGUAGE SELECTOR
+      ================================================== -->
+
+      <div class="language-circle">
+
+        <button
+          id="languageButton"
+          type="button"
+          aria-label="Choose language"
+        >
+          EN
+        </button>
+
+
+        <div
+          id="languageOptions"
+          class="language-options"
+        >
+
+          <button
+            type="button"
+            data-lang="en"
+          >
+            🇬🇧 English
+          </button>
+
+
+          <button
+            type="button"
+            data-lang="ta"
+          >
+            🇮🇳 தமிழ்
+          </button>
+
+
+          <button
+            type="button"
+            data-lang="te"
+          >
+            🇮🇳 తెలుగు
+          </button>
+
+
+          <button
+            type="button"
+            data-lang="hi"
+          >
+            🇮🇳 हिन्दी
+          </button>
+
+
+          <button
+            type="button"
+            data-lang="kn"
+          >
+            🇮🇳 ಕನ್ನಡ
+          </button>
+
+
+          <button
+            type="button"
+            data-lang="ml"
+          >
+            🇮🇳 മലയാളം
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           CHAT TITLE
+      ================================================== -->
+
+      <div class="chat-title">
+
+        <strong>
+          🤖 AirPods AI
+        </strong>
+
+        <small>
+          Smart Assistant
+        </small>
+
+      </div>
+
+
+      <!-- =================================================
+           CLOSE BUTTON
+      ================================================== -->
+
+      <button
+        id="closeChat"
+        type="button"
+        aria-label="Close chat"
+      >
+        ✕
+      </button>
+
+
+    </div>
+
+
+    <!-- =================================================
+         CHAT MESSAGES
+    ================================================== -->
+
+    <div
+      id="chatMessages"
+      class="chat-messages"
+    >
+
+      <div class="bot-message">
+
+        👋 Hi! I'm your AirPods AI Assistant.
+
+        <br>
+        <br>
+
+        Ask me where you last kept your AirPods.
+
+      </div>
+
+    </div>
+
+
+    <!-- =================================================
+         CHAT INPUT
+    ================================================== -->
+
+    <div class="chat-input-area">
+
+      <input
+        type="text"
+        id="chatInput"
+        placeholder="Ask something..."
+        autocomplete="off"
+      >
+
+
+      <button
+        id="chatSend"
+        type="button"
+        aria-label="Send message"
+      >
+        ➤
+      </button>
+
+    </div>
+
+
+  </div>
+
+
+  <!-- =====================================================
+       FIREBASE + MAIN APP
+  ====================================================== -->
+
+  <script
+    type="module"
+    src="./app.js"
+  ></script>
+
+
+</body>
+
+</html>

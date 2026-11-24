@@ -1,0 +1,2707 @@
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    "Segoe UI",
+    "Inter",
+    "Poppins",
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(124, 92, 255, 0.20),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 15%,
+      rgba(34, 211, 238, 0.18),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 50% 90%,
+      rgba(168, 85, 247, 0.12),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #f7f8ff,
+      #ffffff,
+      #f5f7ff
+    );
+
+  color: #17153a;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   2. GLOBAL BACKGROUND GLOW
+   ========================================================= */
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: -1;
+  animation: floatingGlow 9s ease-in-out infinite;
+}
+
+body::before {
+  background: #7c5cff;
+  top: 5%;
+  left: -120px;
+}
+
+body::after {
+  background: #22d3ee;
+  right: -120px;
+  bottom: 5%;
+  animation-delay: 3s;
+}
+
+@keyframes floatingGlow {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(35px, -35px) scale(1.08);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+/* =========================================================
+   3. CONTAINER
+   ========================================================= */
+
+.container {
+  width: 92%;
+  max-width: 1100px;
+  margin: 30px auto;
+}
+
+/* =========================================================
+   4. HEADER
+   ========================================================= */
+
+header {
+  position: relative;
+
+  background:
+    linear-gradient(
+      135deg,
+      #17143f,
+      #3d2b91,
+      #6d4aff,
+      #8b5cf6
+    );
+
+  color: white;
+  text-align: center;
+
+  padding: 48px 20px;
+  border-radius: 30px;
+  margin-bottom: 24px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 25px 60px rgba(55, 40, 150, 0.28);
+
+  animation: headerAppear 0.8s ease;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+
+  width: 230px;
+  height: 230px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.22);
+
+  top: -120px;
+  left: -70px;
+
+  animation: rotateCircle 14s linear infinite;
+}
+
+header::after {
+  content: "";
+
+  position: absolute;
+
+  width: 320px;
+  height: 320px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.12);
+
+  right: -150px;
+  bottom: -180px;
+
+  animation:
+    rotateCircle 18s linear infinite reverse;
+}
+
+@keyframes headerAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotateCircle {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   5. AIRPODS ICON
+   ========================================================= */
+
+.airpods-icon {
+  position: relative;
+  z-index: 2;
+
+  font-size: 56px;
+  margin-bottom: 12px;
+
+  animation:
+    airpodsFloat 3s ease-in-out infinite,
+    iconGlow 2s ease-in-out infinite;
+}
+
+@keyframes airpodsFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes iconGlow {
+  0% {
+    filter:
+      drop-shadow(
+        0 0 0 rgba(255, 255, 255, 0)
+      );
+  }
+
+  50% {
+    filter:
+      drop-shadow(
+        0 0 20px rgba(255, 255, 255, 0.85)
+      );
+  }
+
+  100% {
+    filter:
+      drop-shadow(
+        0 0 0 rgba(255, 255, 255, 0)
+      );
+  }
+}
+
+header h1 {
+  position: relative;
+  z-index: 2;
+
+  font-size: 36px;
+  font-weight: 800;
+
+  margin-bottom: 8px;
+
+  letter-spacing: -1px;
+}
+
+header p {
+  position: relative;
+  z-index: 2;
+
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* =========================================================
+   6. COMMON CARD
+   ========================================================= */
+
+.card {
+  position: relative;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.94),
+      rgba(247, 248, 255, 0.88)
+    );
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  padding: 25px;
+
+  border-radius: 23px;
+  margin-bottom: 21px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.85);
+
+  box-shadow:
+    0 12px 40px rgba(45, 40, 110, 0.08);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  animation:
+    cardAppear 0.7s ease both;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 20px 50px rgba(55, 45, 140, 0.14);
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card h2 {
+  color: #4938a8;
+
+  font-size: 20px;
+  font-weight: 750;
+
+  margin-bottom: 15px;
+}
+
+.card > p {
+  color: #6c6b7c;
+  font-size: 14px;
+}
+
+/* =========================================================
+   7. SEARCH CARD
+   ========================================================= */
+
+.search-card {
+  overflow: hidden;
+}
+
+.search-card::before {
+  content: "🎧";
+
+  position: absolute;
+
+  right: 20px;
+  top: 15px;
+
+  font-size: 60px;
+
+  opacity: 0.045;
+
+  transform: rotate(15deg);
+
+  animation: headphoneFloat 4s ease-in-out infinite;
+}
+
+@keyframes headphoneFloat {
+  0%,
+  100% {
+    transform:
+      rotate(15deg)
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      rotate(5deg)
+      translateY(-8px);
+  }
+}
+
+/* =========================================================
+   8. SEARCH BOX
+   ========================================================= */
+
+.search-box {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.search-box input {
+  flex: 1;
+
+  height: 52px;
+
+  margin-top: 0;
+
+  border-radius: 15px;
+
+  background:
+    rgba(250, 251, 255, 0.95);
+}
+
+.search-box button {
+  min-width: 110px;
+  height: 52px;
+}
+
+/* =========================================================
+   9. INPUTS
+   ========================================================= */
+
+input,
+textarea,
+select {
+  width: 100%;
+
+  padding: 13px 15px;
+  margin-top: 7px;
+
+  border:
+    1px solid #dfe1ef;
+
+  border-radius: 13px;
+
+  background:
+    rgba(250, 251, 255, 0.96);
+
+  color: #29263f;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border 0.25s,
+    box-shadow 0.25s,
+    transform 0.25s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #7565e8;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(117, 101, 232, 0.11);
+
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   10. BUTTON
+   ========================================================= */
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* =========================================================
+   11. SEARCH BUTTON
+   ========================================================= */
+
+#searchBtn {
+  border: none;
+
+  border-radius: 14px;
+
+  padding: 12px 22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #5146d8,
+      #7c5cff,
+      #9b6cff
+    );
+
+  color: white;
+
+  font-weight: 750;
+
+  box-shadow:
+    0 8px 22px
+    rgba(91, 76, 220, 0.25);
+
+  transition: 0.25s;
+}
+
+#searchBtn:hover {
+  transform:
+    translateY(-3px)
+    scale(1.02);
+
+  box-shadow:
+    0 14px 30px
+    rgba(91, 76, 220, 0.34);
+}
+
+#searchBtn:active {
+  transform: scale(0.96);
+}
+
+/* =========================================================
+   12. NOTIFICATION BUTTON
+   ========================================================= */
+
+.notification-btn {
+  width: 100%;
+
+  margin-top: 13px;
+  padding: 13px;
+
+  border:
+    1px solid #d8d7f3;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f1efff,
+      #f8f7ff
+    );
+
+  color: #5146a9;
+
+  font-size: 13px;
+  font-weight: 750;
+
+  transition: 0.25s;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.notification-btn::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 100%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.8),
+      transparent
+    );
+
+  transition: 0.5s;
+}
+
+.notification-btn:hover::before {
+  left: 100%;
+}
+
+.notification-btn:hover {
+  transform: translateY(-2px);
+
+  border-color: #7770dc;
+
+  box-shadow:
+    0 9px 22px
+    rgba(90, 80, 180, 0.13);
+}
+
+.notification-btn:disabled {
+  background: #eaf9ef;
+  color: #277b43;
+
+  border-color: #ccefd8;
+
+  cursor: default;
+}
+
+/* =========================================================
+   13. LAST LOCATION
+   ========================================================= */
+
+#latestLocation {
+  position: relative;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f1f2ff,
+      #fcfbff
+    );
+
+  border:
+    1px solid #e1e3f1;
+
+  border-radius: 18px;
+
+  padding: 21px;
+
+  min-height: 90px;
+
+  overflow: hidden;
+}
+
+#latestLocation::before {
+  content: "";
+
+  position: absolute;
+
+  width: 100px;
+  height: 100px;
+
+  border-radius: 50%;
+
+  right: -30px;
+  top: -30px;
+
+  background:
+    rgba(124, 92, 255, 0.08);
+
+  animation:
+    locationGlow 3s ease-in-out infinite;
+}
+
+#latestLocation::after {
+  content: "📍";
+
+  position: absolute;
+
+  right: 18px;
+  bottom: 10px;
+
+  font-size: 45px;
+
+  opacity: 0.07;
+
+  animation:
+    locationPulse 2s infinite;
+}
+
+@keyframes locationGlow {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+@keyframes locationPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.loading {
+  color: #888;
+  font-size: 14px;
+}
+
+.latest-title {
+  color: #777;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.latest-place {
+  color: #4938a8;
+
+  font-size: 26px;
+  font-weight: 800;
+
+  animation:
+    locationAppear 0.5s ease;
+}
+
+@keyframes locationAppear {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.latest-note {
+  color: #666;
+  font-size: 14px;
+  margin-top: 7px;
+}
+
+/* =========================================================
+   14. SMART HINT
+   ========================================================= */
+
+#hintText {
+  color: #4938a8;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  margin-bottom: 7px;
+}
+
+#hintReason {
+  color: #777;
+  font-size: 13px;
+}
+
+/* =========================================================
+   15. ROOM MAP
+   ========================================================= */
+
+.room-map {
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, 1fr);
+
+  gap: 12px;
+
+  margin-top: 18px;
+}
+
+.room {
+  min-height: 105px;
+
+  border:
+    1px solid #dfe1ef;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fafbff,
+      #f0f1ff
+    );
+
+  color: #555;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  font-size: 30px;
+
+  transition: 0.3s;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.room::before {
+  content: "";
+
+  position: absolute;
+
+  width: 65px;
+  height: 65px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(110, 105, 220, 0.08);
+
+  transition: 0.4s;
+}
+
+.room:hover::before {
+  transform: scale(2.3);
+}
+
+.room:hover {
+  background:
+    linear-gradient(
+      145deg,
+      #eef0ff,
+      #f7f4ff
+    );
+
+  border-color: #7772dc;
+
+  transform:
+    translateY(-6px)
+    scale(1.02);
+
+  box-shadow:
+    0 14px 28px
+    rgba(80, 85, 170, 0.15);
+}
+
+.room span {
+  position: relative;
+
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.room.selected {
+  background:
+    linear-gradient(
+      135deg,
+      #5146d8,
+      #7c5cff,
+      #9b6cff
+    );
+
+  border-color: #6556df;
+
+  color: white;
+
+  box-shadow:
+    0 12px 30px
+    rgba(80, 75, 190, 0.3);
+
+  animation:
+    selectedRoom 0.4s ease;
+}
+
+@keyframes selectedRoom {
+  0% {
+    transform: scale(0.94);
+  }
+
+  70% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.selected-room {
+  margin-top: 15px;
+
+  padding: 11px 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f1f2ff,
+      #faf9ff
+    );
+
+  border-radius: 11px;
+
+  color: #555;
+
+  font-size: 14px;
+}
+
+/* =========================================================
+   16. SAVE FORM
+   ========================================================= */
+
+#log-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+#log-form label {
+  display: block;
+
+  color: #403d54;
+
+  font-size: 14px;
+  font-weight: 750;
+}
+
+/* =========================================================
+   17. PHOTO PREVIEW
+   ========================================================= */
+
+#photoPreview {
+  min-height: 90px;
+
+  border:
+    2px dashed #d6d7ed;
+
+  border-radius: 15px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  color: #999;
+
+  font-size: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fafbff,
+      #f4f3ff
+    );
+
+  transition: 0.25s;
+}
+
+#photoPreview:hover {
+  border-color: #8075db;
+
+  background:
+    #f6f4ff;
+}
+
+#photoPreview img {
+  width: 100%;
+
+  max-height: 220px;
+
+  object-fit: cover;
+
+  border-radius: 10px;
+
+  animation:
+    photoAppear 0.4s ease;
+}
+
+@keyframes photoAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================================================
+   18. SAVE BUTTON
+   ========================================================= */
+
+.save-button {
+  border: none;
+
+  padding: 15px 18px;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #5146d8,
+      #7c5cff,
+      #9b6cff
+    );
+
+  color: white;
+
+  font-weight: 750;
+
+  font-size: 14px;
+
+  transition: 0.25s;
+
+  box-shadow:
+    0 8px 20px
+    rgba(80, 75, 190, 0.22);
+}
+
+.save-button:hover {
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 14px 30px
+    rgba(80, 75, 190, 0.32);
+}
+
+.save-button:active {
+  transform: scale(0.98);
+}
+
+/* =========================================================
+   19. HISTORY
+   ========================================================= */
+
+.history-title {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.history-title h2 {
+  margin-bottom: 0;
+}
+
+#showAllBtn {
+  border:
+    1px solid #d9dcef;
+
+  background: white;
+
+  color: #555;
+
+  padding: 9px 14px;
+
+  border-radius: 9px;
+
+  font-size: 12px;
+  font-weight: 750;
+
+  transition: 0.2s;
+}
+
+#showAllBtn:hover {
+  background: #f1f2ff;
+
+  transform:
+    translateY(-2px);
+
+  color: #4f46b8;
+}
+
+/* =========================================================
+   20. LOCATION HISTORY
+   ========================================================= */
+
+#locations-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+  margin-top: 15px;
+}
+
+.location-item {
+  position: relative;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fafbff,
+      #f5f5ff
+    );
+
+  border:
+    1px solid #e1e3ef;
+
+  border-radius: 16px;
+
+  padding: 17px;
+
+  min-height: 90px;
+
+  transition: 0.25s;
+
+  overflow: hidden;
+}
+
+.location-item::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 4px;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      180deg,
+      #5b63c8,
+      #9b6cff,
+      #22d3ee
+    );
+
+  opacity: 0.8;
+}
+
+.location-item:hover {
+  transform:
+    translateX(5px);
+
+  border-color: #aaa7df;
+
+  box-shadow:
+    0 10px 25px
+    rgba(70, 70, 140, 0.1);
+}
+
+.location-item h3 {
+  color: #4f56a8;
+
+  font-size: 17px;
+
+  margin-bottom: 7px;
+
+  padding-right: 70px;
+}
+
+.location-item p {
+  color: #666;
+
+  font-size: 13px;
+
+  margin-top: 5px;
+}
+
+.location-item img {
+  width: 120px;
+  height: 100px;
+
+  object-fit: cover;
+
+  border-radius: 11px;
+
+  margin-top: 10px;
+
+  transition: 0.25s;
+}
+
+.location-item img:hover {
+  transform: scale(1.04);
+}
+
+.delete-btn {
+  position: absolute;
+
+  top: 12px;
+  right: 12px;
+
+  border: none;
+
+  background: #ffe9e9;
+
+  color: #d33;
+
+  padding: 7px 10px;
+
+  border-radius: 8px;
+
+  font-size: 11px;
+  font-weight: 750;
+
+  transition: 0.2s;
+}
+
+.delete-btn:hover {
+  background: #ffd5d5;
+
+  transform: scale(1.05);
+}
+
+/* =========================================================
+   21. GRAPH / STAT VISUAL EFFECT
+   ========================================================= */
+
+.stats-graph {
+  position: relative;
+
+  height: 120px;
+
+  margin-top: 15px;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(91, 99, 200, 0.06) 0,
+      rgba(91, 99, 200, 0.06) 1px,
+      transparent 1px,
+      transparent 30px
+    ),
+    linear-gradient(
+      135deg,
+      #fafbff,
+      #f4f2ff
+    );
+}
+
+.stats-graph::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  bottom: 20px;
+
+  height: 3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #5b63c8,
+      #7c5cff,
+      #22d3ee
+    );
+
+  transform:
+    skewY(-5deg);
+
+  box-shadow:
+    0 0 15px
+    rgba(124, 92, 255, 0.5);
+
+  animation:
+    graphFlow 3s ease-in-out infinite;
+}
+
+.stats-graph::after {
+  content: "✦  •  ✦  •  ✦";
+
+  position: absolute;
+
+  top: 15px;
+  right: 15px;
+
+  color: #7c5cff;
+
+  font-size: 12px;
+
+  opacity: 0.45;
+
+  letter-spacing: 6px;
+
+  animation:
+    graphParticles 2s ease-in-out infinite;
+}
+
+@keyframes graphFlow {
+  0%,
+  100% {
+    transform:
+      translateX(-8px)
+      skewY(-5deg);
+  }
+
+  50% {
+    transform:
+      translateX(8px)
+      skewY(5deg);
+  }
+}
+
+@keyframes graphParticles {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* =========================================================
+   22. ALARM CARD
+   ========================================================= */
+
+.alarm-card {
+  text-align: center;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(244, 243, 255, 0.96)
+    );
+}
+
+.alarm-card h2 {
+  margin-bottom: 8px;
+}
+
+#alarmStatus {
+  color: #666;
+
+  font-size: 14px;
+
+  margin-bottom: 15px;
+
+  min-height: 21px;
+}
+
+/* =========================================================
+   23. ALARM RADAR
+   ========================================================= */
+
+.alarm-icon {
+  position: relative;
+
+  width: 95px;
+  height: 95px;
+
+  margin:
+    18px auto 22px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 44px;
+
+  background:
+    radial-gradient(
+      circle,
+      #ffffff,
+      #e9e7ff
+    );
+
+  box-shadow:
+    0 10px 30px
+    rgba(80, 85, 170, 0.16);
+
+  z-index: 1;
+}
+
+.alarm-icon::before,
+.alarm-icon::after {
+  content: "";
+
+  position: absolute;
+
+  inset: -8px;
+
+  border-radius: 50%;
+
+  border:
+    2px solid
+    rgba(105, 95, 210, 0.2);
+
+  animation:
+    radarPulse 2s infinite;
+}
+
+.alarm-icon::after {
+  animation-delay: 1s;
+}
+
+@keyframes radarPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* =========================================================
+   24. ALARM BUTTONS
+   ========================================================= */
+
+.alarm-buttons {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 10px;
+}
+
+.alarm-buttons button {
+  border: none;
+
+  padding: 13px 20px;
+
+  border-radius: 12px;
+
+  font-size: 14px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.alarm-start {
+  background:
+    linear-gradient(
+      135deg,
+      #5146d8,
+      #7c5cff
+    );
+
+  color: white;
+
+  box-shadow:
+    0 7px 20px
+    rgba(80, 85, 170, 0.25);
+}
+
+.alarm-start:hover {
+  transform:
+    translateY(-3px)
+    scale(1.02);
+
+  box-shadow:
+    0 12px 28px
+    rgba(80, 85, 170, 0.35);
+}
+
+.alarm-stop {
+  background: #eeeeee;
+
+  color: #444;
+
+  border:
+    1px solid #ddd !important;
+}
+
+.alarm-stop:hover {
+  background: #e2e2e2;
+
+  transform:
+    translateY(-2px);
+}
+
+/* =========================================================
+   25. ALARM ACTIVE
+   ========================================================= */
+
+.alarm-card.alarm-active {
+  border:
+    2px solid #7564d8;
+
+  animation:
+    alarmCardPulse 0.8s infinite;
+}
+
+.alarm-card.alarm-active .alarm-icon {
+  animation:
+    alarmIconPulse 0.6s infinite;
+
+  background:
+    radial-gradient(
+      circle,
+      #ffffff,
+      #ddd9ff
+    );
+}
+
+@keyframes alarmCardPulse {
+  0% {
+    box-shadow:
+      0 8px 25px
+      rgba(80, 85, 170, 0.1);
+  }
+
+  50% {
+    box-shadow:
+      0 8px 45px
+      rgba(80, 85, 170, 0.45);
+  }
+
+  100% {
+    box-shadow:
+      0 8px 25px
+      rgba(80, 85, 170, 0.1);
+  }
+}
+
+@keyframes alarmIconPulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.14);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* =========================================================
+   26. PHONE NOTIFICATION
+   ========================================================= */
+
+.notification-preview {
+  position: fixed;
+
+  top: 20px;
+  right: 20px;
+
+  width: 340px;
+
+  padding: 16px 18px;
+
+  border-radius: 18px;
+
+  background:
+    rgba(255, 255, 255, 0.94);
+
+  backdrop-filter: blur(20px);
+
+  box-shadow:
+    0 18px 50px
+    rgba(30, 40, 90, 0.25);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.85);
+
+  z-index: 5000;
+
+  display: none;
+}
+
+.notification-preview.show {
+  display: block;
+
+  animation:
+    notificationIn 0.5s ease;
+}
+
+@keyframes notificationIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateX(120%)
+      scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateX(0)
+      scale(1);
+  }
+}
+
+.notification-preview::before {
+  content: "🔔";
+
+  position: absolute;
+
+  right: 15px;
+  top: 12px;
+
+  font-size: 20px;
+
+  animation:
+    bellShake 0.8s infinite;
+}
+
+@keyframes bellShake {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+
+  25% {
+    transform: rotate(12deg);
+  }
+
+  75% {
+    transform: rotate(-12deg);
+  }
+}
+
+.notification-preview-title {
+  color: #4f56a8;
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  margin-bottom: 5px;
+}
+
+.notification-preview-text {
+  color: #555;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+/* =========================================================
+   27. CHAT FLOATING BUTTON
+   ========================================================= */
+
+#chatToggle {
+  position: fixed;
+
+  right: 25px;
+  bottom: 25px;
+
+  width: 64px;
+  height: 64px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #17143f,
+      #5146d8,
+      #7c5cff
+    );
+
+  color: white;
+
+  font-size: 27px;
+
+  box-shadow:
+    0 12px 32px
+    rgba(70, 70, 140, 0.32);
+
+  z-index: 1000;
+
+  transition: 0.25s;
+
+  animation:
+    chatFloat 3s ease-in-out infinite;
+}
+
+#chatToggle::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -5px;
+
+  border-radius: 50%;
+
+  border:
+    2px solid
+    rgba(124, 92, 255, 0.35);
+
+  animation:
+    chatRing 2s infinite;
+}
+
+@keyframes chatRing {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+@keyframes chatFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+#chatToggle:hover {
+  transform: scale(1.1);
+
+  animation: none;
+}
+
+/* =========================================================
+   28. CHATBOT
+   ========================================================= */
+
+#chatbot {
+  position: fixed;
+
+  right: 25px;
+  bottom: 100px;
+
+  width: 370px;
+  height: 540px;
+
+  background: white;
+
+  border-radius: 23px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 25px 65px
+    rgba(30, 40, 90, 0.30);
+
+  display: none;
+
+  z-index: 999;
+}
+
+#chatbot.active {
+  display: flex;
+
+  flex-direction: column;
+
+  animation:
+    chatOpen 0.35s ease;
+}
+
+@keyframes chatOpen {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(20px)
+      scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+/* =========================================================
+   29. CHAT HEADER
+   ========================================================= */
+
+.chat-header {
+  position: relative;
+
+  min-height: 70px;
+
+  padding:
+    12px
+    55px
+    12px
+    68px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #17143f,
+      #5146d8,
+      #7c5cff
+    );
+
+  color: white;
+
+  display: flex;
+
+  align-items: center;
+
+  overflow: visible;
+}
+
+.chat-header::after {
+  content: "";
+
+  position: absolute;
+
+  width: 100px;
+  height: 100px;
+
+  right: -35px;
+  top: -45px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.2);
+
+  animation:
+    rotateCircle 8s linear infinite;
+}
+
+.chat-title {
+  display: flex;
+
+  flex-direction: column;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+.chat-header strong {
+  font-size: 15px;
+}
+
+.chat-header small {
+  font-size: 11px;
+
+  opacity: 0.85;
+
+  margin-top: 3px;
+}
+
+/* =========================================================
+   30. LANGUAGE CIRCLE
+   ========================================================= */
+
+.language-circle {
+  position: absolute;
+
+  left: 12px;
+  top: 13px;
+
+  width: 43px;
+  height: 43px;
+
+  z-index: 100;
+}
+
+/* rotating ring */
+
+.language-circle::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -6px;
+
+  border-radius: 50%;
+
+  border:
+    2px dashed
+    rgba(255, 255, 255, 0.75);
+
+  animation:
+    languageOrbit 5s linear infinite;
+}
+
+@keyframes languageOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* sparkle */
+
+.language-circle::after {
+  content: "✦";
+
+  position: absolute;
+
+  top: -10px;
+  right: -7px;
+
+  color: white;
+
+  font-size: 13px;
+
+  animation:
+    languageSpark 1.4s ease-in-out infinite;
+}
+
+@keyframes languageSpark {
+  0%,
+  100% {
+    opacity: 0.3;
+
+    transform:
+      scale(0.7)
+      rotate(0deg);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform:
+      scale(1.3)
+      rotate(180deg);
+  }
+}
+
+/* =========================================================
+   31. LANGUAGE BUTTON
+   ========================================================= */
+
+#languageButton {
+  position: relative;
+
+  width: 43px;
+  height: 43px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #f0efff
+    );
+
+  color: #5146d8;
+
+  font-size: 11px;
+
+  font-weight: 850;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  box-shadow:
+    0 6px 18px
+    rgba(50, 60, 120, 0.28);
+
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+
+  z-index: 2;
+}
+
+#languageButton::before {
+  content: "🌐";
+
+  position: absolute;
+
+  font-size: 15px;
+
+  opacity: 0;
+
+  transform: scale(0);
+
+  transition: 0.3s;
+}
+
+#languageButton:hover {
+  transform:
+    rotate(-8deg)
+    scale(1.1);
+
+  box-shadow:
+    0 0 28px
+    rgba(255, 255, 255, 0.7);
+
+  color: transparent;
+}
+
+#languageButton:hover::before {
+  opacity: 1;
+
+  transform: scale(1);
+}
+
+/* =========================================================
+   32. LANGUAGE MENU
+   ========================================================= */
+
+.language-options {
+  position: absolute;
+
+  left: 52px;
+  top: -4px;
+
+  width: 185px;
+
+  padding: 8px;
+
+  background:
+    rgba(255, 255, 255, 0.97);
+
+  backdrop-filter: blur(18px);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.9);
+
+  border-radius: 17px;
+
+  box-shadow:
+    0 18px 45px
+    rgba(40, 50, 100, 0.27);
+
+  display: none;
+
+  transform-origin:
+    left center;
+}
+
+.language-options.active {
+  display: block;
+
+  animation:
+    languageMenuOpen 0.35s
+    cubic-bezier(.17,.67,.4,1.3);
+}
+
+@keyframes languageMenuOpen {
+  0% {
+    opacity: 0;
+
+    transform:
+      translateX(-15px)
+      scale(0.75);
+  }
+
+  70% {
+    transform:
+      translateX(4px)
+      scale(1.03);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateX(0)
+      scale(1);
+  }
+}
+
+/* glowing top line */
+
+.language-options::before {
+  content: "";
+
+  position: absolute;
+
+  left: 12px;
+  right: 12px;
+
+  top: 0;
+
+  height: 2px;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #5b63c8,
+      #a17cff,
+      #22d3ee
+    );
+
+  background-size: 200% 100%;
+
+  animation:
+    languageLine 2s linear infinite;
+}
+
+@keyframes languageLine {
+  0% {
+    background-position: 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* =========================================================
+   33. LANGUAGE BUTTONS
+   ========================================================= */
+
+.language-options button {
+  position: relative;
+
+  width: 100%;
+
+  border: none;
+
+  background: transparent;
+
+  color: #444;
+
+  text-align: left;
+
+  padding: 10px 12px;
+
+  margin: 2px 0;
+
+  border-radius: 10px;
+
+  font-size: 13px;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.25s,
+    background 0.25s,
+    color 0.25s;
+}
+
+.language-options button::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 100%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(115, 105, 220, 0.14),
+      transparent
+    );
+
+  transition: 0.45s;
+}
+
+.language-options button:hover::before {
+  left: 100%;
+}
+
+.language-options button:hover {
+  background:
+    linear-gradient(
+      135deg,
+      #eef0ff,
+      #f7f3ff
+    );
+
+  color: #4f56a8;
+
+  transform:
+    translateX(5px);
+}
+
+.language-options button.active {
+  background:
+    linear-gradient(
+      135deg,
+      #5146d8,
+      #7c5cff
+    );
+
+  color: white;
+
+  box-shadow:
+    0 6px 16px
+    rgba(80, 85, 170, 0.25);
+}
+
+/* =========================================================
+   34. LANGUAGE PARTICLES
+   ========================================================= */
+
+.language-options button:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.language-options button:nth-child(2) {
+  animation-delay: 0.10s;
+}
+
+.language-options button:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+.language-options button:nth-child(4) {
+  animation-delay: 0.20s;
+}
+
+.language-options button:nth-child(5) {
+  animation-delay: 0.25s;
+}
+
+.language-options button:nth-child(6) {
+  animation-delay: 0.30s;
+}
+
+/* =========================================================
+   35. CLOSE CHAT
+   ========================================================= */
+
+#closeChat {
+  position: absolute;
+
+  right: 12px;
+  top: 16px;
+
+  width: 35px;
+  height: 35px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.18);
+
+  color: white;
+
+  font-size: 17px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.2s;
+
+  z-index: 5;
+}
+
+#closeChat:hover {
+  background:
+    rgba(255, 255, 255, 0.32);
+
+  transform:
+    rotate(90deg);
+}
+
+/* =========================================================
+   36. CHAT MESSAGES
+   ========================================================= */
+
+.chat-messages {
+  flex: 1;
+
+  padding: 15px;
+
+  overflow-y: auto;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8f9ff,
+      #f3f3ff
+    );
+}
+
+.chat-message,
+.bot-message,
+.user-message {
+  max-width: 85%;
+
+  padding: 10px 13px;
+
+  margin-bottom: 10px;
+
+  border-radius: 14px;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+
+  word-wrap: break-word;
+
+  animation:
+    messageIn 0.3s ease;
+}
+
+@keyframes messageIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+.bot-message {
+  margin-right: auto;
+
+  background: white;
+
+  color: #444;
+
+  border:
+    1px solid #e3e5ef;
+
+  border-bottom-left-radius: 4px;
+
+  box-shadow:
+    0 3px 12px
+    rgba(40, 40, 100, 0.05);
+}
+
+.user-message {
+  margin-left: auto;
+
+  background:
+    linear-gradient(
+      135deg,
+      #5146d8,
+      #7c5cff
+    );
+
+  color: white;
+
+  border-bottom-right-radius: 4px;
+
+  box-shadow:
+    0 5px 14px
+    rgba(80, 70, 190, 0.18);
+}
+
+/* =========================================================
+   37. CHAT INPUT
+   ========================================================= */
+
+.chat-input-area {
+  display: flex;
+
+  gap: 8px;
+
+  padding: 10px;
+
+  background: white;
+
+  border-top:
+    1px solid #e5e6ef;
+}
+
+#chatInput {
+  flex: 1;
+
+  margin: 0;
+
+  padding: 11px 13px;
+
+  border-radius: 12px;
+}
+
+#chatSend {
+  width: 45px;
+  height: 45px;
+
+  flex-shrink: 0;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #5146d8,
+      #7c5cff
+    );
+
+  color: white;
+
+  font-size: 17px;
+
+  transition: 0.2s;
+}
+
+#chatSend:hover {
+  background:
+    linear-gradient(
+      135deg,
+      #443bc0,
+      #6849ed
+    );
+
+  transform:
+    scale(1.05);
+}
+
+/* =========================================================
+   38. SCROLLBAR
+   ========================================================= */
+
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background:
+    linear-gradient(
+      180deg,
+      #8b7cff,
+      #5b63c8
+    );
+
+  border-radius: 10px;
+}
+
+/* =========================================================
+   39. SUCCESS
+   ========================================================= */
+
+.success-message {
+  background: #eaf9ef;
+
+  color: #277b43;
+
+  border:
+    1px solid #ccefd8;
+
+  padding: 10px 12px;
+
+  border-radius: 10px;
+
+  margin-top: 10px;
+
+  font-size: 13px;
+
+  animation:
+    messageIn 0.3s ease;
+}
+
+/* =========================================================
+   40. ERROR
+   ========================================================= */
+
+.error-message {
+  background: #fff0f0;
+
+  color: #c0392b;
+
+  border:
+    1px solid #ffd2d2;
+
+  padding: 10px 12px;
+
+  border-radius: 10px;
+
+  margin-top: 10px;
+
+  font-size: 13px;
+
+  animation:
+    shakeError 0.4s ease;
+}
+
+@keyframes shakeError {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+/* =========================================================
+   41. MOBILE / TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .container {
+    width: 94%;
+    margin: 20px auto;
+  }
+
+  header h1 {
+    font-size: 29px;
+  }
+
+  .room-map {
+    grid-template-columns:
+      repeat(3, 1fr);
+  }
+
+  #chatbot {
+    width: 350px;
+
+    right: 15px;
+    bottom: 90px;
+  }
+
+  #chatToggle {
+    right: 18px;
+    bottom: 18px;
+  }
+
+  .notification-preview {
+    width:
+      calc(100% - 30px);
+
+    right: 15px;
+  }
+}
+
+/* =========================================================
+   42. MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .container {
+    width: 94%;
+    margin: 15px auto;
+  }
+
+  header {
+    padding: 30px 15px;
+    border-radius: 21px;
+  }
+
+  .airpods-icon {
+    font-size: 43px;
+  }
+
+  header h1 {
+    font-size: 25px;
+  }
+
+  header p {
+    font-size: 12px;
+  }
+
+  .card {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .card h2 {
+    font-size: 18px;
+  }
+
+  .search-box {
+    flex-direction: column;
+  }
+
+  .search-box button {
+    width: 100%;
+  }
+
+  .room-map {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .alarm-buttons {
+    flex-direction: column;
+  }
+
+  .alarm-buttons button {
+    width: 100%;
+  }
+
+  .alarm-icon {
+    width: 82px;
+    height: 82px;
+
+    font-size: 37px;
+  }
+
+  #chatbot {
+    width:
+      calc(100% - 20px);
+
+    height: 520px;
+
+    right: 10px;
+    bottom: 85px;
+
+    border-radius: 18px;
+  }
+
+  #chatToggle {
+    width: 58px;
+    height: 58px;
+
+    right: 15px;
+    bottom: 15px;
+  }
+
+  .language-options {
+    left: 48px;
+    width: 175px;
+  }
+
+  .notification-preview {
+    top: 10px;
+
+    width:
+      calc(100% - 20px);
+
+    right: 10px;
+
+    border-radius: 16px;
+  }
+}
+
+/* =========================================================
+   43. SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 350px) {
+
+  .container {
+    width: 96%;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  .room-map {
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+  #chatbot {
+    width:
+      calc(100% - 12px);
+
+    right: 6px;
+  }
+
+  .language-options {
+    width: 155px;
+  }
+
+  .chat-message,
+  .bot-message,
+  .user-message {
+    max-width: 90%;
+  }
+}
+
+/* =========================================================
+   44. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+
+    animation-duration:
+      0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    scroll-behavior:
+      auto !important;
+
+    transition-duration:
+      0.01ms !important;
+  }
+}
+
